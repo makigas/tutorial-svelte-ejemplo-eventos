@@ -1,93 +1,37 @@
 <script>
-  import Input from './lib/Input.svelte';
-  import Dropdown from './lib/Dropdown.svelte';
-  import Rangos from './lib/Rangos.svelte';
+	import Router, { push, replace, location } from "svelte-spa-router";
+	import { wrap } from "svelte-spa-router/wrap";
+	// import {routes} from './routes';
+	import Navbar from "./navbar.svelte";
 
-  let estado = {
-    nombre: 'Pepita',
-    apellido: 'Flores',
-    sector: 'Frontend',
-    salario: {
-      min: 30000,
-      max: 45000,
-    },
-  }
+	import { routes } from "./routes";
+	function routeLoaded(event) {
+		console.log("routeLoaded event");
+		// The first 5 properties are the same as for the routeLoading event
+		// console.log("Route", event.detail.route);
+		// console.log("Location", event.detail.location);
+		// console.log("Querystring", event.detail.querystring);
+		// console.log("Params", event.detail.params);
+		// console.log("User data", event.detail.userData);
+		// The last two properties are unique to routeLoaded
+		console.log("Component", event.detail.component); // This is a Svelte component, so a function
+		console.log("Name", event.detail.name);
 
-  let error = null;
+		// console.log(window.location.href);
+		
 
-  let sectores = ['Backend', 'Frontend', 'Devops', 'QA'];
+		// 	import WorkingWithCssGlobal from "./routes/workingWithCssGlobal.svelte";
+		// 	routes["/WorkingCSS/global"] ={
+		// 		component: WorkingWithCssGlobal,
+		// 	});
+		// } else {
+		// 	delete routes["/WorkingCSS/global"];
+		// }
 
-  function envio(e) {
-    e.preventDefault();
-    alert(JSON.stringify(estado));
-  }
-
-  function actualizarSalario(e) {
-    estado.salario.min = e.detail.min;
-    estado.salario.max = e.detail.max;
-    if (estado.salario.min > estado.salario.max) {
-      error = "No puedes tener más en el mínimo que en el máximo";
-    } else {
-      error = null;
-    }
-  }
+	}
 </script>
 
 <main>
-  <form on:submit={envio}>
-    <Input identifier="nombre" label="Nombre" bind:value={estado.nombre} />
-    <Input identifier="apellido" label="Apellido" bind:value={estado.apellido} />
-    <Dropdown identifier="sector" label="Sector" choices={sectores} bind:value={estado.sector} />
-    <Rangos identifier="salarios" label="Salarios" min={estado.salario.min} max={estado.salario.max} on:update={actualizarSalario} />
-    {#if error != null}
-      <p>{error}</p>
-    {/if}
-    <p>
-      <input type="submit" value="Enviar" disabled={error !== null} />
-    </p>
-  </form>
+	<Navbar />
+	<Router {routes} on:routeLoaded={routeLoaded} />
 </main>
-
-<style>
-  :root {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-      Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  }
-
-  main {
-    text-align: center;
-    padding: 1em;
-    margin: 0 auto;
-  }
-
-  img {
-    height: 16rem;
-    width: 16rem;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4rem;
-    font-weight: 100;
-    line-height: 1.1;
-    margin: 2rem auto;
-    max-width: 14rem;
-  }
-
-  p {
-    max-width: 14rem;
-    margin: 1rem auto;
-    line-height: 1.35;
-  }
-
-  @media (min-width: 480px) {
-    h1 {
-      max-width: none;
-    }
-
-    p {
-      max-width: none;
-    }
-  }
-</style>
