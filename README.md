@@ -1,10 +1,38 @@
-# Svelte + Vite
+# Svelte + Vite + Spa-router
 
 This template should help get you started developing with Svelte in Vite.
 
+the repo is based on the course serie https://www.youtube.com/watch?v=pze2JJj82XA&list=PLTd5ehIj0goM-5mQxXLmCr5nHZX_yc2QT&ab_channel=makigas
+by makigas
+
+## topics 
+
+- events 
+- event modifiers
+- css scopes  
+- dollar operator
+- directives 
+- webcomponents
+- handle routes
+
+# install and run 
+
+install
+```
+npm install
+```
+
+run
+```
+npm run dev
+```
+
+
 ## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- [VS Code](https://code.visualstudio.com/) 
+- [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+- [npm](https://www.npmjs.com/)
 
 ## Need an official Svelte framework?
 
@@ -46,3 +74,17 @@ If you have state that's important to retain within a component, consider creati
 import { writable } from 'svelte/store'
 export default writable(0)
 ```
+
+
+
+# Disclaimer: Code Repository based on "YouTube Course" by makigas
+
+This repository contains code and materials created as a result of following the "YouTube Course" by makigas. The purpose of this repository is to consolidate and showcase the practical implementation of concepts covered in the course.
+
+# License:
+
+The code in this repository is generally provided under the license specified in the original course or as explicitly indicated in individual files. Be sure to review and comply with the relevant licenses before using or distributing the code.
+Questions and Support:
+
+Any questions or issues related to the course content or the code in this repository should be directed to the appropriate channels provided by makigas on the original YouTube platform.
+By using or contributing to this repository, you agree to abide by the terms and conditions outlined in this disclaimer.
